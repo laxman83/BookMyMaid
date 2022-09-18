@@ -8,6 +8,7 @@ const UserDataService = {
     return http.get("/signup");
   },
   create(data) {
+    console.log('data', data);
     return http.post("/auth/signup", data);
   },
   getPublicContent() {

@@ -1,5 +1,4 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "./Registration.css";
 import UserDataService from "../../services/userServices";
@@ -66,19 +65,18 @@ class Registration extends React.Component {
   }
 
   async contactSubmit(e) {
+    console.log("contactSubmit called", this.handleValidation());
     e.preventDefault();
     if (this.handleValidation()) {
       const userResponse = await UserDataService.create(this.state.fields);
-      console.log("User response", userResponse);
-      if (userResponse.status === 400) {
-        alert("User already exits");
-      }
-      if (userResponse.status === 200) {
+      console.log(userResponse.data)
+      if (userResponse.data.status !==200) {
+       
+        alert(userResponse.data.message);
+      }else{
         alert("User register successfully");
         return this.props.history.push("/login");
-      } else {
-        alert("Something went wrong");
-      }
+      } 
     } else {
       alert("Form has errors.");
     }
@@ -132,7 +130,7 @@ class Registration extends React.Component {
               value={this.state.fields["email"]}
             />
             <span style={{ color: "red" }}>
-              {this.state.errors["username"]}
+              {this.state.errors["email"]}
             </span>
             <br />
           </div>
@@ -145,7 +143,7 @@ class Registration extends React.Component {
               value={this.state.fields["password"]}
             />
             <span style={{ color: "red" }}>
-              {this.state.errors["username"]}
+              {this.state.errors["password"]}
             </span>
             <br />
           </div>
@@ -154,17 +152,14 @@ class Registration extends React.Component {
               type="password"
               class="form-input"
               placeholder="cpassword"
-              onChange={this.handleChange.bind(this, "password")}
+              onChange={this.handleChange.bind(this, "cpassword")}
               value={this.state.fields["password"]}
             />
             <span style={{ color: "red" }}>
-              {this.state.errors["username"]}
+              {this.state.errors["cpassword"]}
             </span>
             <br />
           </div>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Terms & Condition accept" />
-          </Form.Group>
           <div class="form-group">
             <button class="form-button" type="submit">
               Sign up

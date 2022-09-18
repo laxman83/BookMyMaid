@@ -67,7 +67,7 @@ function Footer() {
               <i class="fab fa-typo3" />
             </Link>
           </div>
-          <small class="website-rights">BookMyMaid © 2021</small>
+          <small class="website-rights">BookMyMaid © 2022</small>
           <div class="social-icons">
             <Link
               class="social-icon-link facebook"

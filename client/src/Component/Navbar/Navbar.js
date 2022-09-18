@@ -27,8 +27,8 @@ class Navbar extends React.Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showModeratorBoard: user.roles?.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles?.includes("ROLE_ADMIN"),
       });
     }
   }
@@ -169,7 +169,7 @@ class Navbar extends React.Component {
             Feedback
           </button>
         </div>
-        <div id="mybutton">
+        { currentUser ?(  <div id="mybutton">
           <button
             type="submit"
             class="feedback"
@@ -177,7 +177,8 @@ class Navbar extends React.Component {
           >
             Book Now
           </button>
-        </div>
+        </div>) :(<></>)
+  }
       </>
     );
   }

@@ -3,8 +3,24 @@ import { Col, Row, Container, Button, Card, Badge } from "react-bootstrap";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import CardItem from "../Card/CardItem";
 import "./CSS/Style.css";
+import AuthService from "../../services/authService";
 
 class WardBoy extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: undefined,
+    };
+  }
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+    console.log(user);
+    if (user) {
+      this.setState({
+        currentUser: user,
+      });
+    }
+  }
   nextPath(path) {
     this.props.history.push(path);
   }
@@ -50,7 +66,8 @@ class WardBoy extends React.Component {
                   <Button
                     variant="primary"
                     size="lg"
-                    onClick={() => this.nextPath("/BookNow")}
+                    onClick={() => this.state.currentUser ? this.nextPath("/BookNow") 
+                    : this.nextPath("/login")}
                   >
                     Book Now
                   </Button>

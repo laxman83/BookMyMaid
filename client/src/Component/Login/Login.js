@@ -41,11 +41,22 @@ class Login extends React.Component {
     this.form.validateAll();
 
     AuthService.login(this.state.username, this.state.password).then(
-      () => {
-        this.props.history.push("/home");
-        window.location.reload();
+      (responseData) => {
+        if(responseData.status === 400) {
+          alert(responseData.message);
+          this.setState({
+            username: '',
+            password: ''
+          })
+        }
+        if(responseData.status === 200) {
+          this.props.history.push("/home");
+          window.location.reload();
+        }
+       
       },
       (error) => {
+        console.log("Error: " + error)
         const resMessage =
           (error.response &&
             error.response.data &&

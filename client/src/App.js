@@ -78,7 +78,7 @@ class App extends Component {
         <Router>
           <div className="auth-inner">
             <Switch>
-              <Route path="/sign-up" component={Registration} />
+              {/* <Route path="/sign-up" component={Registration} /> */}
               <Route path="/forgot" component={Forgot} />
             </Switch>
           </div>
