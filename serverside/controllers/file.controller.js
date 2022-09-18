@@ -68,7 +68,7 @@ const findData = (req, res) => {
   // const email = req.query.email;
   // let condition = email ? { email: { [Op.like]: `%${email}%` } } : null;
 
-  Maid.findAll()
+  Maid.findAndCountAll()
     .then((data) => {
       res.send(data);
     })

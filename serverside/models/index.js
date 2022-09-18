@@ -24,8 +24,7 @@ db.contactus = require("../models/ContactUs.model.js")(sequelize, Sequelize);
 db.maids = require("../models/Form.model.js")(sequelize, Sequelize);
 db.maidBook = require("../models/MaidBook.model.js")(sequelize, Sequelize);
 db.feedback = require("../models/FeedBack.model.js")(sequelize, Sequelize);
-console.log("Inside feedback");
-console.log(db.feedback);
+
 db.role.belongsToMany(db.user, {
   through: "user_roles",
   foreignKey: "roleId",
